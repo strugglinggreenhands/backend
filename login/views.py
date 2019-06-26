@@ -106,6 +106,7 @@ def up_trans(request):
             if trans_type == None:
                 message = "请选择任务类型"
                 return render(request, 'login/up_trans.html', locals())
+            count = up_trans_form.cleaned_data['count']
             bonus = up_trans_form.cleaned_data['bonus']
             phone = up_trans_form.cleaned_data['phone']
             detail = up_trans_form.cleaned_data['detail']
@@ -113,6 +114,7 @@ def up_trans(request):
             # ok
             new_trans = models.Transaction.objects.create()
             new_trans.type = trans_type
+            new_trans.count = count
             new_trans.bonus = bonus
             new_trans.uploader = request.session.get('user_name')
             new_trans.phone = phone
