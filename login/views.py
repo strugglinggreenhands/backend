@@ -151,6 +151,7 @@ def find_trans(request):
         '''
         lista = Transaction.objects.values_list('trans_num', flat=True)
         listb = Transaction.objects.values_list('type', flat=True)
+        listcount = Transaction.objects.values_list('count', flat=True)
         listc = Transaction.objects.values_list('bonus', flat=True)
         listd = Transaction.objects.values_list('uploader', flat=True)
         liste = Transaction.objects.values_list('phone', flat=True)
@@ -163,6 +164,7 @@ def find_trans(request):
             dict = {
                 '任务编号': lista[i],
                 '任务类型': get_type(listb[i]),
+                '可接受人数': listcount[i],
                 '积分奖励': listc[i],
                 '发布者': listd[i],
                 '联系电话': liste[i],
@@ -199,6 +201,7 @@ def find_trans(request):
         acceptor = Transaction.objects.values_list('acceptor', flat=True)
         is_finish = Transaction.objects.values_list('is_finish', flat=True)
         '''
+
         temp = {
             'key': trans_info
         }
@@ -208,6 +211,7 @@ def find_trans(request):
         trans = models.Transaction.objects.get(trans_num=temp_trans_num)
         request.session['trans_num'] = trans.trans_num
         request.session['trans_type'] = get_type(trans.type)
+        request.session['trans_count'] = trans.count
         request.session['trans_bonus'] = trans.bonus
         request.session['trans_uploader'] = trans.uploader
         request.session['trans_phone'] = trans.phone
@@ -272,6 +276,7 @@ def accept_trans(request):
     dict = {
         '任务编号': request.session['trans_num'],
         '任务类型': request.session['trans_type'],
+        '可接受人数': request.session['trans_count'],
         '积分奖励': request.session['trans_bonus'],
         '发布者': request.session['trans_uploader'],
         '联系电话': request.session['trans_phone'],
