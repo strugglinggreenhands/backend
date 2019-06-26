@@ -18,7 +18,7 @@ class User(models.Model):
     password = models.CharField(max_length=256)
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=32, choices=gender, default='男')
-    point = models.IntegerField(default='0')
+    point = models.IntegerField(default='50')
     c_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -42,6 +42,7 @@ class Transaction(models.Model):
     )
     trans_num = models.AutoField(primary_key=True, unique=True)
     type = models.CharField(max_length=32, choices=trans_type)
+    count = models.IntegerField(default='1')
     bonus = models.IntegerField(default='10')
     uploader = models.CharField(max_length=256)
     phone = models.CharField(max_length=32)
