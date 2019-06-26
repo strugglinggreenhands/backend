@@ -106,6 +106,7 @@ def up_trans(request):
             if trans_type == None:
                 message = "请选择任务类型"
                 return render(request, 'login/up_trans.html', locals())
+            count = up_trans_form.cleaned_data['count']
             bonus = up_trans_form.cleaned_data['bonus']
             phone = up_trans_form.cleaned_data['phone']
             detail = up_trans_form.cleaned_data['detail']
@@ -113,6 +114,7 @@ def up_trans(request):
             # ok
             new_trans = models.Transaction.objects.create()
             new_trans.type = trans_type
+            new_trans.count = count
             new_trans.bonus = bonus
             new_trans.uploader = request.session.get('user_name')
             new_trans.phone = phone
@@ -299,14 +301,15 @@ def my_doing(request):
             dict = {
                 '任务编号': my_doing[i][0],
                 '任务类型': get_type(my_doing[i][1]),
-                '积分奖励': my_doing[i][2],
-                '发布者': my_doing[i][3],
-                '联系电话': my_doing[i][4],
-                '任务内容': my_doing[i][5],
-                '截止日期': my_doing[i][6],
-                '接受状态': my_doing[i][8],
-                '执行人': my_doing[i][9],
-                '完成状态': my_doing[i][10]
+                '可接受人数': my_doing[i][2],
+                '积分奖励': my_doing[i][3],
+                '发布者': my_doing[i][4],
+                '联系电话': my_doing[i][5],
+                '任务内容': my_doing[i][6],
+                '截止日期': my_doing[i][7],
+                '接受状态': my_doing[i][9],
+                '执行人': my_doing[i][10],
+                '完成状态': my_doing[i][11]
             }
             my_doing_trans.append(
                 dict
@@ -330,14 +333,15 @@ def my_finish(request):
             dict = {
                 '任务编号': my_finish[i][0],
                 '任务类型': get_type(my_finish[i][1]),
-                '积分奖励': my_finish[i][2],
-                '发布者': my_finish[i][3],
-                '联系电话': my_finish[i][4],
-                '任务内容': my_finish[i][5],
-                '截止日期': my_finish[i][6],
-                '接受状态': my_finish[i][8],
-                '执行人': my_finish[i][9],
-                '完成状态': my_finish[i][10]
+                '可接受人数': my_finish[i][2],
+                '积分奖励': my_finish[i][3],
+                '发布者': my_finish[i][4],
+                '联系电话': my_finish[i][5],
+                '任务内容': my_finish[i][6],
+                '截止日期': my_finish[i][7],
+                '接受状态': my_finish[i][9],
+                '执行人': my_finish[i][10],
+                '完成状态': my_finish[i][11]
             }
             my_finish_trans.append(
                 dict
@@ -354,14 +358,15 @@ def my_upload(request):
             dict = {
                 '任务编号': my_upload[i][0],
                 '任务类型': get_type(my_upload[i][1]),
-                '积分奖励': my_upload[i][2],
-                '发布者': my_upload[i][3],
-                '联系电话': my_upload[i][4],
-                '任务内容': my_upload[i][5],
-                '截止日期': my_upload[i][6],
-                '接受状态': my_upload[i][8],
-                '执行人': my_upload[i][9],
-                '完成状态': my_upload[i][10]
+                '可接受人数': my_upload[i][2],
+                '积分奖励': my_upload[i][3],
+                '发布者': my_upload[i][4],
+                '联系电话': my_upload[i][5],
+                '任务内容': my_upload[i][6],
+                '截止日期': my_upload[i][7],
+                '接受状态': my_upload[i][9],
+                '执行人': my_upload[i][10],
+                '完成状态': my_upload[i][11]
             }
             my_upload_trans.append(
                 dict
@@ -384,14 +389,15 @@ def delete_trans(request):
             dict = {
                 '任务编号': my_upload[i][0],
                 '任务类型': get_type(my_upload[i][1]),
-                '积分奖励': my_upload[i][2],
-                '发布者': my_upload[i][3],
-                '联系电话': my_upload[i][4],
-                '任务内容': my_upload[i][5],
-                '截止日期': my_upload[i][6],
-                '接受状态': my_upload[i][8],
-                '执行人': my_upload[i][9],
-                '完成状态': my_upload[i][10]
+                '可接受人数': my_upload[i][2],
+                '积分奖励': my_upload[i][3],
+                '发布者': my_upload[i][4],
+                '联系电话': my_upload[i][5],
+                '任务内容': my_upload[i][6],
+                '截止日期': my_upload[i][7],
+                '接受状态': my_upload[i][9],
+                '执行人': my_upload[i][10],
+                '完成状态': my_upload[i][11]
             }
             my_upload_trans.append(
                 dict

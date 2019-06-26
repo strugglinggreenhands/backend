@@ -36,7 +36,7 @@ class UpTransForm(forms.Form):
         ('drug', '代买药品'),
     )
     # type = forms.ChoiceField(label=u'类型', widget=forms.ChoiceField())
-    count = forms.IntegerField(label="人数", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    count = forms.IntegerField(label="可接受人数", widget=forms.TextInput(attrs={'class': 'form-control'}))
     bonus = forms.IntegerField(label="分数", widget=forms.TextInput(attrs={'class': 'form-control'}))
     # uploader = forms.CharField(label="发布者", max_length=128, widget=forms.TextInput(attrs={'class': 'form-control'}))
     phone = forms.CharField(label="联系电话", max_length=32, widget=forms.TextInput(attrs={'class': 'form-control'}))
