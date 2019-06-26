@@ -41,12 +41,13 @@ python manage.py migrate
 
 [ngrok下载](https://ngrok.com/download)
 
-- 解压后运行程序
+- 本机运行
+- 运行程序
 - 在程序内输入下列命令
     ```python
-    ngrok authtoken 5cPJx41mf38znaQ96ofth_2ofQxozFbdZ5pNRv3D5PJ
-    ngrok http 80  //80为端口号，可改
+    ngrok authtoken 5cPJx41mf38znaQ96ofth_2ofQxozFbdZ5pNRv3D5PJ  #第一次运行时需
+    ngrok http 80  #80为端口号，可改，之后运行该程序直接输入这一行命令即可
     ```
-- setting.py中ALLOWED_HOSTS加入ngrok的Forwarding域名
-- 本机运行，外网通过Forwarding域名访问
+- setting.py中ALLOWED_HOSTS设为ngrok的Forwarding域名并保存
+- 外网通过Forwarding域名访问，每次运行域名不同
     ![](./img/2.png)
