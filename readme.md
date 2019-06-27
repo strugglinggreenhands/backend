@@ -33,8 +33,6 @@ python manage.py migrate
 
 ### 运行中版本问题
 
-- decode相关错误，且本机python版本为3+，则找到对应报错代码，将decode改为encode
-
 - pymysqlclient版本报错没有高于1.3.3，找到对应报错代码，将提示报错的if语句注释
 
 ### 外网访问本机运行的网页
