@@ -26,7 +26,7 @@ SECRET_KEY = '&9w70xlv!6sgn36p*bgfn&7xu444m=nage#6e2%e7icd4!9j5p'
 DEBUG = True
 
 # 外网访问本地使用的域名
-ALLOWED_HOSTS = ['19cf28df.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',        #数据库名字
         'USER': 'root',          #账号
-        'PASSWORD': 'cheng.1',      #密码
+        'PASSWORD': 'root',      #密码
         'HOST': '127.0.0.1',    #IP
         'PORT': '3306',                   #端口
     }
