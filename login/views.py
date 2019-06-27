@@ -92,6 +92,34 @@ def logout(request):
     request.session.flush()
     return redirect('/index/')
 
+def membership(request):
+    pass
+    return render(request, "login/membership.html")
+
+
+def modify_info(request):
+    # if request.session.get('is_login', None):
+    if request.method == "POST":
+        modify_info_form = ModifyInfoForm(request.POST)
+        if modify_info_form.is_valid():  # 获取数据
+            password1 = modify_info_form.cleaned_data['password1']
+            password2 = modify_info_form.cleaned_data['password2']
+            if password1 != password2:  # 判断两次密码是否相同
+                message = "两次输入的密码不同！"
+                return render(request, 'login/modify_info.html', locals())
+            else:
+                user = models.User.objects.get(name=request.session.get('user_name'))
+                user.password = password1
+                user.save()
+                request.session.flush()
+                message = "修改成功！"
+                return render(request, 'login/index.html', {'message': message})
+    modify_info_form = ModifyInfoForm()
+    return render(request, 'login/modify_info.html', locals())
+
+def msg_center(request):
+    pass
+    return render(request, 'login/msg_center.html')
 
 def transaction(request):
     pass
@@ -238,40 +266,10 @@ def get_type(var):
 #########################################################################
 
 
-def membership(request):
-    pass
-    return render(request, "login/membership.html")
-
-
-def modify_info(request):
-    # if request.session.get('is_login', None):
-    if request.method == "POST":
-        modify_info_form = ModifyInfoForm(request.POST)
-        if modify_info_form.is_valid():  # 获取数据
-            password1 = modify_info_form.cleaned_data['password1']
-            password2 = modify_info_form.cleaned_data['password2']
-            if password1 != password2:  # 判断两次密码是否相同
-                message = "两次输入的密码不同！"
-                return render(request, 'login/modify_info.html', locals())
-            else:
-                user = models.User.objects.get(name=request.session.get('user_name'))
-                user.password = password1
-                user.save()
-                request.session.flush()
-                message = "修改成功！"
-                return render(request, 'login/index.html', {'message': message})
-    modify_info_form = ModifyInfoForm()
-    return render(request, 'login/modify_info.html', locals())
-
-
 def my_transaction(request):
     pass
     return render(request, 'login/my_transaction.html')
 
-
-def msg_center(request):
-    pass
-    return render(request, 'login/msg_center.html')
 
 
 def accept_trans(request):
